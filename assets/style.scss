@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Jim+Nightshade&display=swap');
+
+@font-face {
+    font-family: "Anirb";
+    src: url(anirmprecious.ttf);
+}
+
+$font: "Anirb";
+$orange: #ff6702;
+$yellow: #fdcc09;
+$dark: #000000;
+$white: #ffffff;
+
+@mixin flexMid{
+    display: flex;
+    justify-content: center;
+}
+
+@mixin ring ($sizeX, $sizeY, $color, $sizeborder) {
+    height: 1.5px * $sizeX;
+    width: 1.5px * $sizeY;
+    border: 1px * $sizeborder solid $color;
+    border-radius:50%;
+
+
+}
+
+body{
+    font-family: "Anirb";
+    font-weight: bold;
+
+    h1{
+        font-size: 30px;
+        font-weight: bold;
+    }
+}
+
+.navbar.navbar-expand-lg {
+    background-color: $orange;
+    padding-right: 30px;;
+
+        .navbar-brand {
+            color: $white;
+            font-size: 25px;
+            padding-left: 15px;
+        }
+    
+            .nav-link {
+                color: $white;
+                font-size: 15px;
+                background-color: $orange;
+                text-align: center;
+                &:hover {
+                    color: $white;
+                    text-decoration: underline $white;
+               
+
+            }
+    }
+}
+
+.page {
+    @include flexMid;
+/*     height:75vh; */
+    background-image: url('precious.png');
+}
+
+.orange-ring {
+    @include ring(30, 30, $orange, 5);
+}
+
+.yellow-ring {
+    @include ring(150, 150, $yellow, 20);
+    box-shadow: 2px 5px 2px 2px #d6b013, inset 2px 5px 2px 2px #d6b013;
+}
+
+footer {
+    background-color: $orange;
+
+    li{
+        list-style-type: none;
+
+        .footer-text {
+            color: $white;
+            text-decoration: none;
+            font-size: 12px;
+            &:hover{
+                color: $white;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+
+@mixin child($desc...){
+    @for $i from 0 to length($desc) {
+        #{nth($desc, $i + 1)} {
+          @include ring(18 * $i / 1.7, 18 * $i / 1.7, $dark, 1 * $i);
+          margin-left: -5px * $i;
+          box-shadow: 2px 2px 0px 1px #070707, inset 2px 2px 0px 1px #272726;
+        }
+    }
+}
+
+.parent {
+    @include child('.ring1', '.ring2', '.ring3', '.ring4', '.ring5', '.ring6', '.ring7');
+}
+
+
